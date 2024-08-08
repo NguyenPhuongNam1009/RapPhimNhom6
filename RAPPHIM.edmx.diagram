@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f5af7a87652949c08ae4b29de33e4081" Name="Diagram1">
+        <EntityTypeShape EntityType="RAPPHIMModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.DATVE" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.DatVe1" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.GHE" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.Ghe1" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.IdentityUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.PHIM" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.Phim1" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.PHONGCHIEU" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.QUYEN" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.SUATCHIEU" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.SuatChieu1" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.sysdiagram" Width="1.5" PointX="5.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.TAIKHOAN" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.Tbl_IdentityUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.Tbl_IndentityRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.Tbl_Users" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAPPHIMModel.VAITRO" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="RAPPHIMModel.FK_DATVE_GHE" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_DATVE_SUATCHIEU" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_SUATCHIEU_PHIM" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_SUATCHIEU_PHONGCHIEU" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_QUYEN_TAIKHOAN" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_QUYEN_VAITRO" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RAPPHIMModel.IdentityUserRole" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

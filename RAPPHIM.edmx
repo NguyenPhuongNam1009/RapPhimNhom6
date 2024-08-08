@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RAPPHIMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DATVE">
+          <Key>
+            <PropertyRef Name="MAVE" />
+          </Key>
+          <Property Name="MAVE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="20" />
+          <Property Name="GIAVE" Type="int" />
+          <Property Name="MAGHE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MASUAT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="DatVes">
+          <Key>
+            <PropertyRef Name="MaVe" />
+          </Key>
+          <Property Name="MaVe" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="20" />
+          <Property Name="GiaVe" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MaGhe" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaSuat" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GHE">
+          <Key>
+            <PropertyRef Name="MAGHE" />
+          </Key>
+          <Property Name="MAGHE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MADAY" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Ghes">
+          <Key>
+            <PropertyRef Name="MaGhe" />
+          </Key>
+          <Property Name="MaGhe" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Day" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdentityUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHIM">
+          <Key>
+            <PropertyRef Name="MAPHIM" />
+          </Key>
+          <Property Name="MAPHIM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENPHIM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ANHBIA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TRAILER" Type="nvarchar" MaxLength="50" />
+          <Property Name="DAODIEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIENVIEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="THELOAI" Type="nvarchar" MaxLength="50" />
+          <Property Name="THOILUONG" Type="int" />
+          <Property Name="NGONNGU" Type="nvarchar" MaxLength="20" />
+          <Property Name="KHOICHIEU" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Phims">
+          <Key>
+            <PropertyRef Name="MaPhim" />
+          </Key>
+          <Property Name="MaPhim" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TenPhim" Type="nvarchar(max)" />
+          <Property Name="AnhBia" Type="nvarchar(max)" />
+          <Property Name="TrailerUrl" Type="nvarchar(max)" />
+          <Property Name="DaoDien" Type="nvarchar(max)" />
+          <Property Name="DienVien" Type="nvarchar(max)" />
+          <Property Name="TheLoai" Type="nvarchar(max)" />
+          <Property Name="ThoiLuong" Type="int" Nullable="false" />
+          <Property Name="NgonNgu" Type="nvarchar(max)" />
+          <Property Name="KhoiChieu" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHONGCHIEU">
+          <Key>
+            <PropertyRef Name="MAPHONG" />
+          </Key>
+          <Property Name="MAPHONG" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENPHONG" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QUYEN">
+          <Key>
+            <PropertyRef Name="MAQUYEN" />
+          </Key>
+          <Property Name="MAQUYEN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MATK" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MAVAITRO" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUATCHIEU">
+          <Key>
+            <PropertyRef Name="MASUAT" />
+          </Key>
+          <Property Name="MASUAT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NGAYCHIEU" Type="date" />
+          <Property Name="KHUNGGIO" Type="time" Precision="7" />
+          <Property Name="MAPHIM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MAPHONG" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SuatChieux">
+          <Key>
+            <PropertyRef Name="MaSuat" />
+          </Key>
+          <Property Name="MaSuat" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NgayChieu" Type="datetime" Nullable="false" />
+          <Property Name="KhungGio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="MaPhim" Type="nvarchar(max)" />
+          <Property Name="TenPhim" Type="nvarchar(max)" />
+          <Property Name="MaPhong" Type="nvarchar(max)" />
+          <Property Name="TenPhong" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MATK" />
+          </Key>
+          <Property Name="MATK" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENTK" Type="nvarchar" MaxLength="20" />
+          <Property Name="MATKHAU" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="20" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGAYSINH" Type="datetime" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_IdentityUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_IndentityRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="VAITRO">
+          <Key>
+            <PropertyRef Name="MAVAITRO" />
+          </Key>
+          <Property Name="MAVAITRO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="VAITRO" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_DATVE_GHE">
+          <End Role="GHE" Type="Self.GHE" Multiplicity="1" />
+          <End Role="DATVE" Type="Self.DATVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHE">
+              <PropertyRef Name="MAGHE" />
+            </Principal>
+            <Dependent Role="DATVE">
+              <PropertyRef Name="MAGHE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DATVE_SUATCHIEU">
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="1" />
+          <End Role="DATVE" Type="Self.DATVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUATCHIEU">
+              <PropertyRef Name="MASUAT" />
+            </Principal>
+            <Dependent Role="DATVE">
+              <PropertyRef Name="MASUAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserClaim" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_IdentityUserLogin" Type="Self.Tbl_IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_IdentityUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="Tbl_IndentityRoles" Type="Self.Tbl_IndentityRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_IndentityRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYEN_TAIKHOAN">
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="1" />
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAIKHOAN">
+              <PropertyRef Name="MATK" />
+            </Principal>
+            <Dependent Role="QUYEN">
+              <PropertyRef Name="MATK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYEN_VAITRO">
+          <End Role="VAITRO" Type="Self.VAITRO" Multiplicity="1" />
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VAITRO">
+              <PropertyRef Name="MAVAITRO" />
+            </Principal>
+            <Dependent Role="QUYEN">
+              <PropertyRef Name="MAVAITRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHIM">
+          <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIM">
+              <PropertyRef Name="MAPHIM" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MAPHIM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHONGCHIEU">
+          <End Role="PHONGCHIEU" Type="Self.PHONGCHIEU" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONGCHIEU">
+              <PropertyRef Name="MAPHONG" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MAPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RAPPHIMModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DATVE" EntityType="Self.DATVE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatVes" EntityType="Self.DatVes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GHE" EntityType="Self.GHE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ghes" EntityType="Self.Ghes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserClaim" EntityType="Self.IdentityUserClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserRole" EntityType="Self.IdentityUserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIM" EntityType="Self.PHIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phims" EntityType="Self.Phims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONGCHIEU" EntityType="Self.PHONGCHIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUATCHIEU" EntityType="Self.SUATCHIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuatChieux" EntityType="Self.SuatChieux" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_IdentityUserLogin" EntityType="Self.Tbl_IdentityUserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_IndentityRoles" EntityType="Self.Tbl_IndentityRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VAITRO" EntityType="Self.VAITRO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DATVE_GHE" Association="Self.FK_DATVE_GHE">
+            <End Role="GHE" EntitySet="GHE" />
+            <End Role="DATVE" EntitySet="DATVE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DATVE_SUATCHIEU" Association="Self.FK_DATVE_SUATCHIEU">
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+            <End Role="DATVE" EntitySet="DATVE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="IdentityUserClaim" EntitySet="IdentityUserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_IdentityUserLogin" EntitySet="Tbl_IdentityUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="Tbl_IndentityRoles" EntitySet="Tbl_IndentityRoles" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYEN_TAIKHOAN" Association="Self.FK_QUYEN_TAIKHOAN">
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+            <End Role="QUYEN" EntitySet="QUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYEN_VAITRO" Association="Self.FK_QUYEN_VAITRO">
+            <End Role="VAITRO" EntitySet="VAITRO" />
+            <End Role="QUYEN" EntitySet="QUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHIM" Association="Self.FK_SUATCHIEU_PHIM">
+            <End Role="PHIM" EntitySet="PHIM" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHONGCHIEU" Association="Self.FK_SUATCHIEU_PHONGCHIEU">
+            <End Role="PHONGCHIEU" EntitySet="PHONGCHIEU" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RAPPHIMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DATVE">
+          <Key>
+            <PropertyRef Name="MAVE" />
+          </Key>
+          <Property Name="MAVE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TRANGTHAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GIAVE" Type="Int32" />
+          <Property Name="MAGHE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MASUAT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GHE" Relationship="Self.FK_DATVE_GHE" FromRole="DATVE" ToRole="GHE" />
+          <NavigationProperty Name="SUATCHIEU" Relationship="Self.FK_DATVE_SUATCHIEU" FromRole="DATVE" ToRole="SUATCHIEU" />
+        </EntityType>
+        <EntityType Name="DatVe1">
+          <Key>
+            <PropertyRef Name="MaVe" />
+          </Key>
+          <Property Name="MaVe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GiaVe" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaGhe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaSuat" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GHE">
+          <Key>
+            <PropertyRef Name="MAGHE" />
+          </Key>
+          <Property Name="MAGHE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MADAY" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="DATVEs" Relationship="Self.FK_DATVE_GHE" FromRole="GHE" ToRole="DATVE" />
+        </EntityType>
+        <EntityType Name="Ghe1">
+          <Key>
+            <PropertyRef Name="MaGhe" />
+          </Key>
+          <Property Name="MaGhe" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Day" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Users" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="IdentityUserClaim" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="PHIM">
+          <Key>
+            <PropertyRef Name="MAPHIM" />
+          </Key>
+          <Property Name="MAPHIM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TENPHIM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ANHBIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TRAILER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DAODIEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIENVIEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="THELOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="THOILUONG" Type="Int32" />
+          <Property Name="NGONNGU" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KHOICHIEU" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SUATCHIEUx" Relationship="Self.FK_SUATCHIEU_PHIM" FromRole="PHIM" ToRole="SUATCHIEU" />
+        </EntityType>
+        <EntityType Name="Phim1">
+          <Key>
+            <PropertyRef Name="MaPhim" />
+          </Key>
+          <Property Name="MaPhim" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenPhim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnhBia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrailerUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DaoDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DienVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TheLoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiLuong" Type="Int32" Nullable="false" />
+          <Property Name="NgonNgu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KhoiChieu" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PHONGCHIEU">
+          <Key>
+            <PropertyRef Name="MAPHONG" />
+          </Key>
+          <Property Name="MAPHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TENPHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SUATCHIEUx" Relationship="Self.FK_SUATCHIEU_PHONGCHIEU" FromRole="PHONGCHIEU" ToRole="SUATCHIEU" />
+        </EntityType>
+        <EntityType Name="QUYEN">
+          <Key>
+            <PropertyRef Name="MAQUYEN" />
+          </Key>
+          <Property Name="MAQUYEN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MATK" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAVAITRO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK_QUYEN_TAIKHOAN" FromRole="QUYEN" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="VAITRO" Relationship="Self.FK_QUYEN_VAITRO" FromRole="QUYEN" ToRole="VAITRO" />
+        </EntityType>
+        <EntityType Name="SUATCHIEU">
+          <Key>
+            <PropertyRef Name="MASUAT" />
+          </Key>
+          <Property Name="MASUAT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAYCHIEU" Type="DateTime" Precision="0" />
+          <Property Name="KHUNGGIO" Type="Time" Precision="7" />
+          <Property Name="MAPHIM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAPHONG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DATVEs" Relationship="Self.FK_DATVE_SUATCHIEU" FromRole="SUATCHIEU" ToRole="DATVE" />
+          <NavigationProperty Name="PHIM" Relationship="Self.FK_SUATCHIEU_PHIM" FromRole="SUATCHIEU" ToRole="PHIM" />
+          <NavigationProperty Name="PHONGCHIEU" Relationship="Self.FK_SUATCHIEU_PHONGCHIEU" FromRole="SUATCHIEU" ToRole="PHONGCHIEU" />
+        </EntityType>
+        <EntityType Name="SuatChieu1">
+          <Key>
+            <PropertyRef Name="MaSuat" />
+          </Key>
+          <Property Name="MaSuat" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayChieu" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KhungGio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="MaPhim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenPhim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaPhong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenPhong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MATK" />
+          </Key>
+          <Property Name="MATK" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TENTK" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUYENs" Relationship="Self.FK_QUYEN_TAIKHOAN" FromRole="TAIKHOAN" ToRole="QUYEN" />
+        </EntityType>
+        <EntityType Name="Tbl_IdentityUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_Users" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="Tbl_IdentityUserLogin" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="Tbl_IndentityRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_Users" Relationship="Self.IdentityUserRole" FromRole="Tbl_IndentityRoles" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IdentityUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="Tbl_Users" ToRole="IdentityUserClaim" />
+          <NavigationProperty Name="Tbl_IdentityUserLogin" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="Tbl_Users" ToRole="Tbl_IdentityUserLogin" />
+          <NavigationProperty Name="Tbl_IndentityRoles" Relationship="Self.IdentityUserRole" FromRole="Tbl_Users" ToRole="Tbl_IndentityRoles" />
+        </EntityType>
+        <EntityType Name="VAITRO">
+          <Key>
+            <PropertyRef Name="MAVAITRO" />
+          </Key>
+          <Property Name="MAVAITRO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VAITRO1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUYENs" Relationship="Self.FK_QUYEN_VAITRO" FromRole="VAITRO" ToRole="QUYEN" />
+        </EntityType>
+        <Association Name="FK_DATVE_GHE">
+          <End Role="GHE" Type="Self.GHE" Multiplicity="1" />
+          <End Role="DATVE" Type="Self.DATVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GHE">
+              <PropertyRef Name="MAGHE" />
+            </Principal>
+            <Dependent Role="DATVE">
+              <PropertyRef Name="MAGHE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DATVE_SUATCHIEU">
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="1" />
+          <End Role="DATVE" Type="Self.DATVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUATCHIEU">
+              <PropertyRef Name="MASUAT" />
+            </Principal>
+            <Dependent Role="DATVE">
+              <PropertyRef Name="MASUAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserClaim" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHIM">
+          <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIM">
+              <PropertyRef Name="MAPHIM" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MAPHIM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHONGCHIEU">
+          <End Role="PHONGCHIEU" Type="Self.PHONGCHIEU" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONGCHIEU">
+              <PropertyRef Name="MAPHONG" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MAPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYEN_TAIKHOAN">
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="1" />
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAIKHOAN">
+              <PropertyRef Name="MATK" />
+            </Principal>
+            <Dependent Role="QUYEN">
+              <PropertyRef Name="MATK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYEN_VAITRO">
+          <End Role="VAITRO" Type="Self.VAITRO" Multiplicity="1" />
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VAITRO">
+              <PropertyRef Name="MAVAITRO" />
+            </Principal>
+            <Dependent Role="QUYEN">
+              <PropertyRef Name="MAVAITRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_IdentityUserLogin" Type="Self.Tbl_IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_IdentityUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IdentityUserRole">
+          <End Role="Tbl_IndentityRoles" Type="Self.Tbl_IndentityRoles" Multiplicity="*" />
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RAPPHIMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="DATVEs" EntityType="Self.DATVE" />
+          <EntitySet Name="DatVes1" EntityType="Self.DatVe1" />
+          <EntitySet Name="GHEs" EntityType="Self.GHE" />
+          <EntitySet Name="Ghes1" EntityType="Self.Ghe1" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaim" />
+          <EntitySet Name="PHIMs" EntityType="Self.PHIM" />
+          <EntitySet Name="Phims1" EntityType="Self.Phim1" />
+          <EntitySet Name="PHONGCHIEUx" EntityType="Self.PHONGCHIEU" />
+          <EntitySet Name="QUYENs" EntityType="Self.QUYEN" />
+          <EntitySet Name="SUATCHIEUx" EntityType="Self.SUATCHIEU" />
+          <EntitySet Name="SuatChieux1" EntityType="Self.SuatChieu1" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+          <EntitySet Name="Tbl_IdentityUserLogin" EntityType="Self.Tbl_IdentityUserLogin" />
+          <EntitySet Name="Tbl_IndentityRoles" EntityType="Self.Tbl_IndentityRoles" />
+          <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" />
+          <EntitySet Name="VAITROes" EntityType="Self.VAITRO" />
+          <AssociationSet Name="FK_DATVE_GHE" Association="Self.FK_DATVE_GHE">
+            <End Role="GHE" EntitySet="GHEs" />
+            <End Role="DATVE" EntitySet="DATVEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DATVE_SUATCHIEU" Association="Self.FK_DATVE_SUATCHIEU">
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+            <End Role="DATVE" EntitySet="DATVEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="IdentityUserClaim" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHIM" Association="Self.FK_SUATCHIEU_PHIM">
+            <End Role="PHIM" EntitySet="PHIMs" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHONGCHIEU" Association="Self.FK_SUATCHIEU_PHONGCHIEU">
+            <End Role="PHONGCHIEU" EntitySet="PHONGCHIEUx" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYEN_TAIKHOAN" Association="Self.FK_QUYEN_TAIKHOAN">
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+            <End Role="QUYEN" EntitySet="QUYENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYEN_VAITRO" Association="Self.FK_QUYEN_VAITRO">
+            <End Role="VAITRO" EntitySet="VAITROes" />
+            <End Role="QUYEN" EntitySet="QUYENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_IdentityUserLogin" EntitySet="Tbl_IdentityUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="IdentityUserRole" Association="Self.IdentityUserRole">
+            <End Role="Tbl_IndentityRoles" EntitySet="Tbl_IndentityRoles" />
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RAPPHIMModelStoreContainer" CdmEntityContainer="RAPPHIMEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="RAPPHIMModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DATVEs">
+            <EntityTypeMapping TypeName="RAPPHIMModel.DATVE">
+              <MappingFragment StoreEntitySet="DATVE">
+                <ScalarProperty Name="MAVE" ColumnName="MAVE" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="GIAVE" ColumnName="GIAVE" />
+                <ScalarProperty Name="MAGHE" ColumnName="MAGHE" />
+                <ScalarProperty Name="MASUAT" ColumnName="MASUAT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatVes1">
+            <EntityTypeMapping TypeName="RAPPHIMModel.DatVe1">
+              <MappingFragment StoreEntitySet="DatVes">
+                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MaGhe" ColumnName="MaGhe" />
+                <ScalarProperty Name="MaSuat" ColumnName="MaSuat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GHEs">
+            <EntityTypeMapping TypeName="RAPPHIMModel.GHE">
+              <MappingFragment StoreEntitySet="GHE">
+                <ScalarProperty Name="MAGHE" ColumnName="MAGHE" />
+                <ScalarProperty Name="MADAY" ColumnName="MADAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ghes1">
+            <EntityTypeMapping TypeName="RAPPHIMModel.Ghe1">
+              <MappingFragment StoreEntitySet="Ghes">
+                <ScalarProperty Name="MaGhe" ColumnName="MaGhe" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserClaims">
+            <EntityTypeMapping TypeName="RAPPHIMModel.IdentityUserClaim">
+              <MappingFragment StoreEntitySet="IdentityUserClaim">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIMs">
+            <EntityTypeMapping TypeName="RAPPHIMModel.PHIM">
+              <MappingFragment StoreEntitySet="PHIM">
+                <ScalarProperty Name="MAPHIM" ColumnName="MAPHIM" />
+                <ScalarProperty Name="TENPHIM" ColumnName="TENPHIM" />
+                <ScalarProperty Name="ANHBIA" ColumnName="ANHBIA" />
+                <ScalarProperty Name="TRAILER" ColumnName="TRAILER" />
+                <ScalarProperty Name="DAODIEN" ColumnName="DAODIEN" />
+                <ScalarProperty Name="DIENVIEN" ColumnName="DIENVIEN" />
+                <ScalarProperty Name="THELOAI" ColumnName="THELOAI" />
+                <ScalarProperty Name="THOILUONG" ColumnName="THOILUONG" />
+                <ScalarProperty Name="NGONNGU" ColumnName="NGONNGU" />
+                <ScalarProperty Name="KHOICHIEU" ColumnName="KHOICHIEU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phims1">
+            <EntityTypeMapping TypeName="RAPPHIMModel.Phim1">
+              <MappingFragment StoreEntitySet="Phims">
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="TrailerUrl" ColumnName="TrailerUrl" />
+                <ScalarProperty Name="DaoDien" ColumnName="DaoDien" />
+                <ScalarProperty Name="DienVien" ColumnName="DienVien" />
+                <ScalarProperty Name="TheLoai" ColumnName="TheLoai" />
+                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
+                <ScalarProperty Name="NgonNgu" ColumnName="NgonNgu" />
+                <ScalarProperty Name="KhoiChieu" ColumnName="KhoiChieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGCHIEUx">
+            <EntityTypeMapping TypeName="RAPPHIMModel.PHONGCHIEU">
+              <MappingFragment StoreEntitySet="PHONGCHIEU">
+                <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
+                <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUYENs">
+            <EntityTypeMapping TypeName="RAPPHIMModel.QUYEN">
+              <MappingFragment StoreEntitySet="QUYEN">
+                <ScalarProperty Name="MAQUYEN" ColumnName="MAQUYEN" />
+                <ScalarProperty Name="MATK" ColumnName="MATK" />
+                <ScalarProperty Name="MAVAITRO" ColumnName="MAVAITRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUATCHIEUx">
+            <EntityTypeMapping TypeName="RAPPHIMModel.SUATCHIEU">
+              <MappingFragment StoreEntitySet="SUATCHIEU">
+                <ScalarProperty Name="MASUAT" ColumnName="MASUAT" />
+                <ScalarProperty Name="NGAYCHIEU" ColumnName="NGAYCHIEU" />
+                <ScalarProperty Name="KHUNGGIO" ColumnName="KHUNGGIO" />
+                <ScalarProperty Name="MAPHIM" ColumnName="MAPHIM" />
+                <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuatChieux1">
+            <EntityTypeMapping TypeName="RAPPHIMModel.SuatChieu1">
+              <MappingFragment StoreEntitySet="SuatChieux">
+                <ScalarProperty Name="MaSuat" ColumnName="MaSuat" />
+                <ScalarProperty Name="NgayChieu" ColumnName="NgayChieu" />
+                <ScalarProperty Name="KhungGio" ColumnName="KhungGio" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RAPPHIMModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="RAPPHIMModel.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="MATK" ColumnName="MATK" />
+                <ScalarProperty Name="TENTK" ColumnName="TENTK" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_IdentityUserLogin">
+            <EntityTypeMapping TypeName="RAPPHIMModel.Tbl_IdentityUserLogin">
+              <MappingFragment StoreEntitySet="Tbl_IdentityUserLogin">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_IndentityRoles">
+            <EntityTypeMapping TypeName="RAPPHIMModel.Tbl_IndentityRoles">
+              <MappingFragment StoreEntitySet="Tbl_IndentityRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Users">
+            <EntityTypeMapping TypeName="RAPPHIMModel.Tbl_Users">
+              <MappingFragment StoreEntitySet="Tbl_Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VAITROes">
+            <EntityTypeMapping TypeName="RAPPHIMModel.VAITRO">
+              <MappingFragment StoreEntitySet="VAITRO">
+                <ScalarProperty Name="MAVAITRO" ColumnName="MAVAITRO" />
+                <ScalarProperty Name="VAITRO1" ColumnName="VAITRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="IdentityUserRole" TypeName="RAPPHIMModel.IdentityUserRole" StoreEntitySet="IdentityUserRole">
+            <EndProperty Name="Tbl_IndentityRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Tbl_Users">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
