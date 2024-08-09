@@ -1,0 +1,201 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "Ticket Payment";
+    var phim = ViewBag.MovieInfo;
+    var seat = ViewBag.Ghe;
+    var DatVeList = ViewBag.DatVeList;
+    var maGheList = ViewBag.MaGhe;
+    var sum = maGheList.Length * 45000;
+    string formattedSum = sum.ToString("N0", CultureInfo.InvariantCulture);
+
+    var MaVeList = ViewBag.MaVeList;
+}
+
+@if (phim != null)
+{
+    <div class="container p-2">
+        <div class="row">
+            <div class="col-12 col-lg-8 col-md-12" id="main-section">
+                <div class="row col-12">
+                    <h1>Thông tin thanh toán: </h1>
+                    <div class="bg-dark mx-3">
+                        <table class="w-100 fs-4 table-dark table-striped-columns">
+                            <tr>
+                                <th>Họ tên:</th>
+                                <th>Số điện thoại</th>
+                                <th>Email:</th>
+                            </tr>
+                            <tr>
+                                <td><p id="full-name"></p></td>
+                                <td><p id="phone-number"></p></td>
+                                <td><p id="email"></p></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row col-12">
+                    <p class="d-inline-block fs-4">Tổng tiền: @maGheList.Length x 45,000 VNĐ = @formattedSum VNĐ</p>
+                </div>
+
+                <div class="row col-12">
+                    <h2>Phương thức thanh toán:</h2>
+                    <div class="w-50">
+                        <button class="w-100 btn btn-success">Chuyển khoản</button>
+                        <button class="w-100 btn btn-success mt-2" id="momo-payment">Momo</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-8 d-none" id="payment-section">
+                <div class="row">
+                    <h1>Thanh toán:</h1>
+                    <hr />
+                    <div class="col-12 d-flex justify-content-center ">
+                        <div class="w-75 border-1 bg-warning rounded-2 p-3">
+                              <h2>Quét mã thanh toán !</h2>
+                            <p class="price-text">Tổng tiền:  @formattedSum VNĐ</p>
+                            <p>Chúng tôi sẽ email bạn khi đã thanh toán thành công !</p>
+                            <div class="w-100 d-flex justify-content-center ">
+                                <img class="w-75 object-fit-cover" src="~/images/qr.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="w-100 d-flex justify-content-center">
+                            <button class="btn btn-success mt-2" id="done-payment">Xác nhận đã chuyển khoản</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-lg-4 col-md-12 mt-4">
+                <div class="row">
+                    <div class="img-wrapper col-6 d-flex justify-content-center">
+                        <div class="w-75">
+                            <img src="~/Poster/@phim.AnhBia" class="w-100" />
+                        </div>
+                    </div>
+                    <div class="info col-6">
+                        <h2 class="text-primary fs-3">@phim.TenPhim</h2>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Ngày chiếu</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1">@phim.NgayChieuFormatted</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Giờ chiếu</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1">@phim.KhungGio</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Phòng chiếu</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1">@phim.PhongChieu</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Ghế:</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1 seat-selecting-text">
+                                        @foreach (var s in maGheList)
+                                        {
+                                            <span>@s </span>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">
+                404 error @ViewBag.ErrorMessage
+            </h1>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Giá của mỗi ghế
+        var seatPrice = 45000;
+
+        var sumSeatPrice = 0;
+
+        var mainSelectedSeats = @Html.Raw(Json.Encode(maGheList));
+
+        var maPhim = "@phim.MaPhim";
+
+        var maSuat = "@ViewBag.MaSuat";
+
+        var url = "/Ticket/ConfirmPayment";
+
+        // Hàm tính tổng giá
+        function calculateTotalPrice() {
+            var selectedSeats = $('.seat-selecting');
+            var totalPrice = selectedSeats.length * seatPrice;
+
+            sumSeatPrice = totalPrice;
+
+            return totalPrice;
+        }
+
+        // Khi nhấn vào ghế
+    
+
+        $('#done-payment').click(function () {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    maPhim: maPhim,
+                    maSuat: maSuat,
+                    maGhe: mainSelectedSeats
+                },
+                success: function () {
+                    window.location.href = '/Ticket/PaymentSuccess';
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error: ' + error);
+                }
+            });
+        });
+
+        $.ajax({
+            url: '@Url.Action("GetUserInfo", "Account")',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $('#full-name').text(data.FullName);
+                $('#email').text(data.Email);
+                $('#phone-number').text(data.PhoneNumber);
+            },
+            error: function(xhr, status, error) {
+                console.error('An error occurred while fetching user info:', error);
+            }
+        });
+
+        $('#momo-payment').click(function () {
+
+            $('#main-section').addClass('d-none');
+            $('#payment-section').removeClass('d-none');
+        });
+    });
+</script>

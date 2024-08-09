@@ -1,0 +1,170 @@
+﻿@{
+    var phim = ViewBag.MovieInfo;
+    var seat = ViewBag.Ghe;
+    var DatVeList = ViewBag.DatVeList;
+
+    // Tạo HashSet để lưu các mã ghế đã được đặt
+    var bookedSeats = new HashSet<string>();
+    foreach (var dv in DatVeList)
+    {
+        bookedSeats.Add(dv.MaGhe);
+    }
+}
+
+@if (phim != null)
+{
+    <div class="container p-2">
+        <div class="row">
+            <div class="col-12 col-lg-8 col-md-12" style="min-height: 380px;">
+                <div class="row">
+                    <div class="w-100 h-100">
+                        <div class="screen col-12">
+                            <img class="w-100" src="~/images/ic-screen.png" />
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            @{
+                                foreach (var item in seat)
+                                {
+                                    if (bookedSeats.Contains(item.MaGhe))
+                                    {
+                                        <div class="col-1 mt-1">
+                                            <div class="seat-buy text-center w-100" style="line-height: 40px; " data-seat-id="@item.MaGhe">
+                                                @item.MaGhe
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-1 mt-1">
+                                            <div class="seat-unselect seat text-center w-100" style="line-height: 40px; " data-seat-id="@item.MaGhe">
+                                                @item.MaGhe
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-6">
+                        <strong class="fs-2">Tổng tiền:</strong>
+                        <div class="float-end fs-3 mt-1 fw-bold price-text">0 VNĐ</div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center pt-2">
+                        <button id="submit-pay" class="btn h-100 border-2 bg-primary w-75">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 col-md-12 mt-2">
+                <div class="row">
+                    <div class="img-wrapper col-6 d-flex justify-content-center">
+                        <div class="w-75">
+                            <img src="~/Poster/@phim.AnhBia" class="w-100" />
+                        </div>
+                    </div>
+                    <div class="info col-6">
+                        <h2 class="text-primary fs-3">@phim.TenPhim</h2>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Ngày chiếu</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1">@phim.NgayChieuFormatted</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Giờ chiếu</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1">@phim.KhungGio</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Phòng chiếu</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1">@phim.PhongChieu</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row p-1">
+                                    <div class="col-6 fs-4">Ghế:</div>
+                                    <div class="col-6 fs-5 fw-bold pt-1 seat-selecting-text"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">
+                404 error @ViewBag.ErrorMessage
+            </h1>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Giá của mỗi ghế
+        var seatPrice = 45000;
+
+        var mainSelectedSeats = [];
+
+        var maPhim = "@phim.MaPhim";
+        var maSuat = "@ViewBag.MaSuat";
+
+        var url = "/Ticket/TicketPayment?maPhim=" + maPhim + "&maSuat=" + maSuat;
+
+        // Hàm tính tổng giá
+        function calculateTotalPrice() {
+            var selectedSeats = $('.seat-selecting');
+            var totalPrice = selectedSeats.length * seatPrice;
+            return totalPrice;
+        }
+
+        // Khi nhấn vào ghế
+        $('.seat').click(function () {
+            $(this).toggleClass('seat-selecting');
+            $(this).toggleClass('seat-unselect');
+
+            var selectedSeats = [];
+
+            $('.seat-selecting').each(function () {
+                selectedSeats.push($(this).data('seat-id'));
+            });
+
+            // Cập nhật danh sách ghế chọn
+            $('.seat-selecting-text').text(selectedSeats.join(', '));
+
+            // Cập nhật giá tổng
+            var totalPrice = calculateTotalPrice();
+            $('.price-text').text(totalPrice.toLocaleString('vi-VN') + ' VNĐ');
+
+            mainSelectedSeats = selectedSeats;
+
+            for (var i = 0; i < mainSelectedSeats.length; i++) {
+                url += "&maGhe=" + mainSelectedSeats[i]
+            }
+        });
+
+        $('#submit-pay').click(function () {
+            if (mainSelectedSeats.length == 0) {
+                alert("Hãy chọn ít nhất một ghế");
+            } else {
+                window.location.href = url;
+            }
+        });
+    });
+</script>

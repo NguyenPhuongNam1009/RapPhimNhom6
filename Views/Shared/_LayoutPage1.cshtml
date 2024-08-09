@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewBag.Title</title>
+    <style>
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position:fixed;
+            left:0;
+            top: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+
+            .sidebar a {
+                color: #ffffff;
+                padding: 15px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    background-color: #495057;
+                }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 px-0">
+                <div class="sidebar">
+                    <h4 class="text-white text-center">Admin Dashboard</h4>
+                    <a class="fs-3" href="#dashboard">Dashboard</a>
+                    <a class="fs-3" href="#movies">Phim</a>
+                    <a class="fs-3" href="#showtimes">Showtimes</a>
+                    <a class="fs-3" href="#bookings">Vé đặt</a>
+                    <a class="fs-3" href="#users">Người dùng</a>
+                    <a class="fs-3" href="#settings">Cài đặt</a>
+                    <a class="fs-3" href="#logout">Đăng xuất</a>
+                </div>
+            </div>
+
+            <div class="col-10">
+                     @RenderBody()
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

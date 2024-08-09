@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Nhom6_DoAn_.Models.Phim>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-12 col-xl-3 col-lg-6 d-flex justify-content-center mt-5 flex-column align-content-center flex-wrap position-relative product-item">
+
+        <div class="w-100 rounded-3 position-relative product-wrapper">
+            <div class="position-relative img-wrapper">
+                <img src="~/Poster/@item.AnhBia" alt="" style="min-height: 475px" class="w-100 object-fit-fill rounded-4 align-self-center">
+                <div class="position-absolute w-100 h-100 bg-black opacity-50 top-0 start-0 bg-dark" style="display: none; z-index: 100;">
+                    <a href="#" class="btn-trailer" style="z-index: 1000;" data-maphim="@item.MaPhim"><i class="fa-solid fa-circle-play position-absolute text-white top-50 start-50" style="font-size: 75px; transform: translate(-50%, -50%)"></i></a>
+                </div>
+            </div>
+            <p class="fs-5 m-2"><a href="#" class="text-decoration-none" style="color: #337AB7;">@item.TenPhim</a></p>
+            <p class="fs-6 m-1">Thể loại: @item.TheLoai</p>
+            <p class="fs-6 m-1">Thời lượng: @item.ThoiLuong phút</p>
+            <a href="#" class="mt-2 fs-4 rounded-1 text-white text-center d-inline-block bg-primary w-100 text-decoration-none btn-buy" data-maphim="@item.MaPhim">Mua vé</a>
+        </div>
+    </div>
+}
+
