@@ -1,0 +1,90 @@
+﻿@model Nhom6_DoAn_.PHIM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PHIM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENPHIM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENPHIM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANHBIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANHBIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRAILER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRAILER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DAODIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DAODIEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIENVIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIENVIEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.THELOAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THELOAI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.THOILUONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THOILUONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGONNGU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGONNGU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KHOICHIEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHOICHIEU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAPHIM }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

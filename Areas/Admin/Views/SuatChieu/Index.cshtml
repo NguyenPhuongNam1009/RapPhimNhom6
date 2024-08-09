@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Nhom6_DoAn_.SUATCHIEU>
+
+@{
+    ViewBag.Title = "Suất chiếu";
+}
+
+<h2>Suất chiếu</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới suất chiếu", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYCHIEU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KHUNGGIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHIM.TENPHIM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHONGCHIEU.TENPHONG)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYCHIEU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHUNGGIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHIM.TENPHIM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHONGCHIEU.TENPHONG)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MASUAT }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MASUAT }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MASUAT })
+        </td>
+    </tr>
+}
+
+</table>

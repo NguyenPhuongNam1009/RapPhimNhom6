@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Nhom6_DoAn_.PHIM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENPHIM)
+        </th>
+     
+     
+        <th>
+            @Html.DisplayNameFor(model => model.DAODIEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DIENVIEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THELOAI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THOILUONG)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.KHOICHIEU)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENPHIM)
+        </td>
+    
+        <td>
+            @Html.DisplayFor(modelItem => item.DAODIEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DIENVIEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THELOAI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THOILUONG)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.KHOICHIEU)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MAPHIM }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MAPHIM }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MAPHIM })
+        </td>
+    </tr>
+}
+
+</table>

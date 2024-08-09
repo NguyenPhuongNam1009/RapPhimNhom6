@@ -1,0 +1,106 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald", sans-serif;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none !important;
+}
+
+.img-wrapper:hover > div {
+    display: block !important;
+}
+
+
+
+.showUpModal, .subShowUpModal {
+    display: none;
+    
+    position: fixed;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.seat {
+    cursor: pointer;
+}
+
+.seat-buy {
+    background-image: url(/images/seat-buy.png);
+    background-repeat: no-repeat;
+    height: 6vh;
+    background-size: cover;
+}
+
+.seat-selecting {
+    background-image: url(/images/seat-selecting.png);
+    background-repeat: no-repeat;
+    height: 6vh;
+    background-size: cover;
+}
+
+.seat-unselect {
+    background-image: url(/images/seat-unselect.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 6vh;
+    
+}
+
+
+#search-input:focus {
+    outline: none;
+}
+
+
+.wrapper {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    position: fixed;
+}
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .sidebar ul li {
+            height: 60px !important;
+            line-height: 60px;
+            width: 100%;
+            margin: 0 !important;
+            margin: 15px 0;
+           
+        }
+
+            .sidebar ul li a {
+                font-size: 30px;
+                color: white;
+                text-decoration: none;
+            }
+
+                .sidebar ul li a:hover {
+                    text-decoration: underline;
+                }
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}

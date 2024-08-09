@@ -1,0 +1,50 @@
+﻿@model Nhom6_DoAn_.SUATCHIEU
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SUATCHIEU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYCHIEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYCHIEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KHUNGGIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHUNGGIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHIM.TENPHIM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHIM.TENPHIM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONGCHIEU.TENPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONGCHIEU.TENPHONG)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MASUAT }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

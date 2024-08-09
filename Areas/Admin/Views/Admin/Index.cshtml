@@ -1,0 +1,123 @@
+﻿@model Nhom6_DoAn_.Areas.Admin.Models.DashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+ 
+}
+
+<h2>Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card bg-danger">
+            <div class="card-header">
+                Số phim hiện tại
+            </div>
+            <div class="card-body">
+                <h3>@Model.TotalMovies</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success">
+            <div class="card-header">
+                Số lượng suất chiếu
+            </div>
+            <div class="card-body">
+                <h3>@Model.TotalShows</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-primary">
+            <div class="card-header">
+                Số lượng người dùng
+            </div>
+            <div class="card-body">
+                <h3>@Model.TotalUser</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning">
+            <div class="card-header">
+                Số lượng vé đã đặt
+            </div>
+            <div class="card-body">
+                <h3>@Model.TotalTicketBooked</h3>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Thêm các thẻ div khác để hiển thị dữ liệu khác -->
+
+    <hr />
+    <div class="d-flex justify-content-between">
+        <div style="width: 600px; height: 400px;">
+            <h3>Biểu đồ suất chiếu</h3>
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div style="width: 600px; height: 400px;">
+            <h3>Biểu đồ vé đã đặt</h3>
+            <canvas id="myChartUser"></canvas>
+        </div>
+
+    </div>
+    <!-- Thêm các tập tin JavaScript cần thiết -->
+    <script src="~/Scripts/chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $.getJSON('@Url.Action("GetChartData", "Admin")', function (data) {
+            console.log(data);
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar', // Loại biểu đồ
+                data: {
+                    labels: data.map(item => item.Label), // Nhãn cho biểu đồ
+                    datasets: [{
+                        label: 'Số lượng',
+                        data: data.map(item => item.Value), // Dữ liệu cho biểu đồ
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+         $.getJSON('@Url.Action("GetChartDataUsers", "Admin")', function (data) {
+            console.log(data);
+            var ctx = document.getElementById('myChartUser').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar', // Loại biểu đồ
+                data: {
+                    labels: data.map(item => item.Label), // Nhãn cho biểu đồ
+                    datasets: [{
+                        label: 'Số lượng',
+                        data: data.map(item => item.Value), // Dữ liệu cho biểu đồ
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+    });
+    </script>

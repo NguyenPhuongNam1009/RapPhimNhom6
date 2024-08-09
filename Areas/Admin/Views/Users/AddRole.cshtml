@@ -1,0 +1,37 @@
+﻿@model Nhom6_DoAn_.Tbl_Users
+
+@{
+    ViewBag.Title = "Add Role";
+}
+
+<h2>Add Role</h2>
+
+@using (Html.BeginForm("AddRole", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Assign Role</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Roles", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("selectedRole", (SelectList)ViewBag.Roles, "Select Role", new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Role" class="btn btn-primary mt-2" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
